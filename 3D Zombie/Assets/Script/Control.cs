@@ -25,6 +25,7 @@ public class Control : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         characterControl = GetComponent<CharacterController>();
         particle = GetComponentInChildren<ParticleSystem>();
+        particle.gameObject.SetActive(false);
     }
     void Update()
     {
@@ -33,7 +34,11 @@ public class Control : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            particle.Play();
+            particle.gameObject.SetActive(true);
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            particle.gameObject.SetActive(false);
         }
 
         if (!characterControl.isGrounded)
