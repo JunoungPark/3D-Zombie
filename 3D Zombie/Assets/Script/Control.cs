@@ -11,12 +11,14 @@ public class Control : MonoBehaviour
     [SerializeField] float eulerAngleX;
     [SerializeField] float eulerAngleY;
     [SerializeField] float moveSpeed;
-
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform muzzle;
     private Vector3 moveForce;
     public Transform camera;
     float gravity = -9.81f;
     private CharacterController characterControl;
     private ParticleSystem particle;
+    
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -31,10 +33,12 @@ public class Control : MonoBehaviour
     {
         
         UpdateRotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
+        
         if (Input.GetButtonDown("Fire1"))
         {
             particle.gameObject.SetActive(true);
+            Instantiate(bullet, muzzle.position, muzzle.rotation);
+            
         }
         if (Input.GetButtonUp("Fire1"))
         {
