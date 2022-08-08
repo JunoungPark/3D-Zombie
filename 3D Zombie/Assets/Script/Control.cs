@@ -24,6 +24,7 @@ public class Control : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         characterControl = GetComponent<CharacterController>();
         particle = GetComponentInChildren<ParticleSystem>();
@@ -38,7 +39,8 @@ public class Control : MonoBehaviour
         {
             particle.gameObject.SetActive(true);
             Instantiate(bullet, muzzle.position, muzzle.rotation);
-            
+            SoundManager.instance.Sound(0);
+
         }
         if (Input.GetButtonUp("Fire1"))
         {

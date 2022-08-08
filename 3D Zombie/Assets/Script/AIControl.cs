@@ -8,7 +8,7 @@ public class AIControl : MonoBehaviour
     NavMeshAgent agent;
     [SerializeField] int count;
     [SerializeField] Transform[] wayPoint;
-    [SerializeField] int health;
+    public int health;
 
     private Transform tempPoint = null;
     Animator animator;
@@ -26,6 +26,7 @@ public class AIControl : MonoBehaviour
         
         if (health <= 0)
         {
+            agent.speed = 0;
             CancelInvoke();
             animator.Play("mixamo_com");
             Destroy(gameObject, 3);
@@ -59,6 +60,7 @@ public class AIControl : MonoBehaviour
         {
             SetTarget(other.transform);
         }
+
     }
     public void OnTriggerStay(Collider other)
     {
@@ -75,4 +77,5 @@ public class AIControl : MonoBehaviour
             RemoveTarget();
         }
     }
+
 }
